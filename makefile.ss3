@@ -1,0 +1,15 @@
+.SUFFIXES: .plm .pro
+
+OBJECTS = alis.plm debug.plm listen.plm
+ABIN = $(AMZI_DEV_DIR)/abin/
+
+all: $(ABIN)alis.xpl
+
+.pro.plm:
+	acmp $<
+
+$(ABIN)alis.xpl : $(OBJECTS)
+	alnk $(ABIN)alis $(OBJECTS)
+
+clean:
+	-rm *.plm

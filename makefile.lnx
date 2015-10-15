@@ -1,0 +1,34 @@
+.SUFFIXES: .plm .pro
+
+ALIS = $(AMZI_DEV_DIR)/abin/alis.xpl
+AIDL = $(AMZI_DEV_DIR)/abin/aidl.xpl
+AXRF = $(AMZI_DEV_DIR)/abin/axrf.xpl
+ALIB = $(AMZI_DEV_DIR)/abin/alib.plm
+DEBUG64 = $(AMZI_DEV_DIR)/abin/debug64.plm
+AREG = $(AMZI_DEV_DIR)/src/acore/compile/register.plm
+READER = ../compile/reader.plm
+
+OBJECTS = alis.plm debug.plm listen.plm axrf.plm probe.plm debug64.plm $(READER)
+
+
+all: $(DEBUG64) $(ALIS) $(AIDL) $(AXRF)
+
+.pro.plm:
+	acmp $<
+
+$(DEBUG64) : debug64.plm
+	cp debug64.plm $(DEBUG64)
+
+$(ALIS) : $(ALIB) $(OBJECTS)
+	alnk $(ALIS) alis listen debug debug64 $(READER)
+
+$(AIDL) : $(ALIB) $(OBJECTS)
+	alnk $(AIDL) listen debug debug64 $(READER)
+
+$(AXRF) : $(ALIB) $(OBJECTS)
+	alnk $(AXRF) axrf
+
+clean :
+	rm *.plm
+
+	
