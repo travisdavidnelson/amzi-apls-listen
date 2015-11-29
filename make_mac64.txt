@@ -9,7 +9,7 @@ AXRF = $(RELEASE)/abin/axrf.xpl
 ALIB = $(RELEASE)/abin/alib.plm
 DEBUG64 = $(RELEASE)/abin/debug64.plm
 AREG = $(RELEASE)/src/acore/compile/register.plm
-READER = ../compile/reader.plm
+READER = ../amzi-apls-compile/reader.plm
 
 OBJECTS = alis.plm debug.plm listen.plm axrf.plm probe.plm debug64.plm $(READER)
 
