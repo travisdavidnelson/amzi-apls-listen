@@ -145,79 +145,13 @@ listen$(X) :-
    do$(XE).
 
 greetings :-
+   write(`\n  ****************************************************\n`), 
    write(`\n  Amzi! Prolog Listener `),
    write(`\n  Version: `),
    version(Ver), write(Ver), nl,
-   write(`  Copyright (c) 1992-2012 Amzi! inc. All Rights Reserved.\n`),
-   op$en(X),
-   greetings(X).
-
-greetings(_) :-
-   !,
-   write(`\n  ****************************************************\n`), 
-   amzi_system:license$info(product_type_str, PRODUCT),
-   greetings_product(PRODUCT),
+   write(`  Copyright (c) 1992-2016 Amzi! inc.\n`),
+   write(`  Open Source version licensed under the M.I.T. License.\n`).
    write(`  ****************************************************\n`).
-
-greetings_product(`EVAL`) :-
-   amzi_system:license$info(eval_days_left, DAYS),
-   write(`  EVALUATION COPY\n`),
-   write(`  Evaluation ends in `), write(DAYS), write(` days.\n`),
-   write(`  Please ask your school, company or organization to buy\n`),
-   write(`  an Education or Enterprise license,\n`),
-   write(`  or buy an individual license for yourself.\n`),
-   write(`  www.amzi.com\n`).
-greetings_product(`AP`) :-
-   amzi_system:license$info(product_name_str, NAME),
-   write(`  `),
-   write(NAME), nl,
-   write(`  Free Version`), nl.
-greetings_product(TYPE) :-
-   amzi_system:license$info(product_name_str, NAME),
-   %amzi_system:license$info(maint_days_left, DAYS),
-   amzi_system:license$info(user_name_str, USER),
-   amzi_system:license$info(maint_days_left, DAYS),
-   write(`  `),
-   write(NAME), nl,
-   write(`  Licensed to `), write(USER), nl,
-   ( DAYS > 0 ->
-      write(`  Maintenance Days Left `), write(DAYS), nl
-      ;
-      write(`  Maintenance Expired`), nl ).
-
-product_name('APS', `Developer`).
-product_name('APX', `Professional`).
-product_name('AP1', `Student`).
-
-unl$defined :-
-   defined(amzi_register:unl$sta/1).
-
-op$en(Status) :-
-   unl$defined, !,
-   unl$sta(Status).
-op$en(i).
-
-exp$date(M, MonName, D, Y) :-
-   unl$defined, !,
-   unl$ctm(M, MonName, D, Y).
-exp$date(_, _, _, _).
-
-un$lock(FileS, UserS, OrgS, ProdS, KeyS) :-
-   unl$defined, !,
-   unl$rid(FileS, UserS, OrgS, $$, ProdS, KeyS).
-un$lock(_, _, _, _, _).
-
-who$ami(User, Org, Product, Platform, Version) :-
-   unl$defined, !,
-   unl$gri(User, Org, _, _, _),
-   unl$gid(Product, Platform, Version, _, _).
-who$ami(`System`, `Amzi! inc.`, `APX`, $$, `6.2`).
-
-who$ami(User, Org, Product, Platform, Version, SerialNo) :-
-   unl$defined, !,
-   unl$gri(User, Org, _, _, _),
-   unl$gid(Product, Platform, Version, _, _).
-who$ami(`System`, `Amzi! inc.`, `APX`, $$, `6.2`, $$).
 
 %-------------------------------------------------------------------
 % Things to do
