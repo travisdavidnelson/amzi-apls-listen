@@ -150,7 +150,7 @@ greetings :-
    write(`\n  Version: `),
    version(Ver), write(Ver), nl,
    write(`  Copyright (c) 1992-2016 Amzi! inc.\n`),
-   write(`  Open Source version licensed under the M.I.T. License.\n`).
+   write(`  Open Source version licensed under the M.I.T. License.\n`),
    write(`  ****************************************************\n`).
 
 %-------------------------------------------------------------------
